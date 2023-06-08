@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,20 +28,26 @@ namespace OpenSourceBar
             InitializeComponent();
         }
 
-        private void Text_click_func(object sender, MouseButtonEventArgs e)
+        private void Vol_Change(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            MediaPlayer.Volume = Volume.Value;
         }
 
-        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Media_Load_File(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog Media_File = new OpenFileDialog();
+            Media_File.Title = "Open Video";
+            Media_File.Filter = "MP4 files|*.mp4";
+            Media_File.InitialDirectory = @"C:\";
+            if (Media_File.ShowDialog() == true)
+            {
+                MessageBox.Show(Media_File.FileName.ToString());
+                var Media_File1 = Media_File.FileName.ToString();
+                MediaPlayer mp = new MediaPlayer();
+                //mp.SetValue(Media_File1);
+                mp.Play();
 
-        }
-
-        private void SaveNoteClick(object sender, MouseButtonEventArgs e)
-        {
-            Console.Write(TextBox.Document);
-
+            }
         }
     }
 }

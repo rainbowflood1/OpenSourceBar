@@ -5,16 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject>OpenSourceBar.App</StartupObject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FastColoredTextBox.Net5" Version="2.16.26" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="FastColoredTextBox">
-      <HintPath>FastColoredTextBox.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
 
 </Project>
