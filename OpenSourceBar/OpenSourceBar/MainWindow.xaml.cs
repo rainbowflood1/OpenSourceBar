@@ -30,23 +30,24 @@ namespace OpenSourceBar
 
         private void Vol_Change(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            MediaPlayer.Volume = Volume.Value;
+            mpBox.Volume = Volume.Value;
+            Volume_label1.Content = Volume.Value;
         }
 
         private void Media_Load_File(object sender, RoutedEventArgs e)
         {
             OpenFileDialog Media_File = new OpenFileDialog();
             Media_File.Title = "Open Video";
-            Media_File.Filter = "MP4 files|*.mp4";
-            Media_File.InitialDirectory = @"C:\";
+            Media_File.Filter = "MP4 files|*.mp3";
+            //Media_File.InitialDirectory = @"C:\";
             if (Media_File.ShowDialog() == true)
             {
                 MessageBox.Show(Media_File.FileName.ToString());
                 var Media_File1 = Media_File.FileName.ToString();
                 MediaPlayer mp = new MediaPlayer();
-                //mp.SetValue(Media_File1);
-                mp.Play();
-
+                //mpBox.Open(new Uri(Media_File1));
+                mpBox.Source = new Uri(Media_File1);
+                mpBox.Play();
             }
         }
     }
